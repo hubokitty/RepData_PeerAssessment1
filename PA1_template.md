@@ -3,7 +3,7 @@
 
 ## Loading and preprocessing the data
 
-### Load the data (i.e. read.csv())
+Load the data (i.e. read.csv())
 
 ```r
 data <- read.csv("activity.csv")
@@ -69,13 +69,11 @@ avg.step.line
 The 5-min time interval contains the maximum number of steps?
 
 ```r
-format(intsteps[which.max(intsteps$steps),c("interval")], 
-    format = "%H:%M"
-    )
+intsteps[which.max(intsteps$steps),c("interval")]
 ```
 
 ```
-## [1] "835"
+## [1] 835
 ```
 ## Imputing missing values
 

@@ -9,7 +9,7 @@ output:
 ## Loading and preprocessing the data
 
 Load the data (i.e. read.csv())
-```{r}
+```{r,echo=TRUE}
 data <- read.csv("activity.csv")
 ```
 
@@ -32,12 +32,12 @@ histplot
 ```
 
 mean total number of steps taken per day
-```{r}
+```{r,echo=TRUE}
 mean(dailysteps$steps , na.rm = TRUE)
 ```
 
 median total number of steps taken per day
-```{r}
+```{r,echo=TRUE}
 median(dailysteps$steps , na.rm = TRUE)
 ```
 
@@ -54,20 +54,18 @@ avg.step.line
 ```
 
 The 5-min time interval contains the maximum number of steps?
-```{r}
-format(intsteps[which.max(intsteps$steps),c("interval")], 
-    format = "%H:%M"
-    )
+```{r,echo=TRUE}
+intsteps[which.max(intsteps$steps),c("interval")]
 ```
 ## Imputing missing values
 
 total number of missing values in the dataset
-```{r}
+```{r,echo=TRUE}
 nrow(data[is.na(data$steps),])
 ```
 
 Replace the missing values with the median value for that interval.
-```{r}
+```{r,echo=TRUE}
 cleanData<-data
 cleanData$steps[is.na(cleanData$steps)] <- tapply(cleanData$steps, cleanData$interval, mean, na.rm = TRUE)
 ```
@@ -84,16 +82,16 @@ histplot
 ```
 
 mean total number of steps taken per day
-```{r}
+```{r,echo=TRUE}
 mean(total.steps.by.day$steps , na.rm = TRUE)
 ```
 median total number of steps taken per day
-```{r}
+```{r,echo=TRUE}
 median(total.steps.by.day$steps , na.rm = TRUE)
 ```
 ## Are there differences in activity patterns between weekdays and weekends?
 Add the Weekday/weekend identifier
-```{r}
+```{r,echo=TRUE}
 cleanData$weekday <- as.factor(ifelse(weekdays(cleanData$date) %in% c("Saturday","Sunday"), "Weekend", "Weekday")) 
 
 average.steps.by.interval.and.weekday  <- aggregate(x = cleanData$steps , 
